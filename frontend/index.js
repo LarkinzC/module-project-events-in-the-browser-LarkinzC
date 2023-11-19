@@ -73,7 +73,7 @@ function moduleProject2() {
   let isDown = evt.key === keys.down
   let isRight = evt.key === keys.right
   let isLeft = evt.key === keys.left
-
+  let isSpaceBar = evt.key === keys.space
   let targeted = document.querySelector('.targeted')
 
     if (isUp) {
@@ -101,8 +101,30 @@ function moduleProject2() {
       } 
     }
     // 👉 TASK 4 - Use the space bar to exterminate a mosquito 👈
+      else if(isSpaceBar) {
+        let mosquito = targeted.firstChild
+        
 
-    // 👉 TASK 5 - End the game 👈
+        if (mosquito && mosquito.dataset.status === 'alive') {
+          mosquito.dataset.status = 'dead'
+          mosquito.parentElement.style.backgroundColor = 'red'
+        }
+        // 👉 TASK 5 - End the game 👈
+        let liveMosquitos = document.querySelectorAll('[data-status=alive]')
+        if(!liveMosquitos.length) {
+          let elapsed = getTimeElapsed()
+          document.querySelector('.info').textContent = `Extermination completed in ${elapsed / 1000} seconds!`
+
+          let restart = document.createElement('button')
+          restart.textContent = 'Restart'
+          restart.addEventListener('click', () => {
+            location.reload()
+          })
+          document.querySelector('h2').insertAdjacentElement('beforeend', restart)
+          restart.focus()
+        }
+      }
+    
   })
   // 👆 WORK WORK ABOVE THIS LINE 👆
   console.log('key clicked')
