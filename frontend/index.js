@@ -37,6 +37,10 @@ function moduleProject2() {
       row.appendChild(square)
       square.addEventListener('click', () => {
         // 👉 TASK 2 - Use a click handler to target a square 👈
+        if (!square.classList.contains('targeted')) {
+          document.querySelector('.targeted').classList.remove('targeted')
+          square.classList.add('targeted')
+        }
       })
     }
   }
@@ -71,6 +75,7 @@ function moduleProject2() {
     // 👉 TASK 5 - End the game 👈
   })
   // 👆 WORK WORK ABOVE THIS LINE 👆
+  console.log('key clicked')
 }
 
 // ❗ DO NOT MODIFY THE CODE BELOW
